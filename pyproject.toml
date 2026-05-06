@@ -37,6 +37,8 @@ select = [
     "N",   # pep8-naming
     "SIM"  # flake8-simplify
 ]
+fixable = ["ALL"]
+ignore = ["E501"]
 
 [tool.ruff.format]
 quote-style = "double"
