@@ -24,7 +24,7 @@ dev = [
 ]
 
 [tool.ruff]
-line-length = 88
+line-length = 80
 target-version = "py312"
 
 [tool.ruff.lint]
@@ -38,7 +38,7 @@ select = [
     "SIM"  # flake8-simplify
 ]
 fixable = ["ALL"]
-ignore = ["E501"]
+unfixable = ["F401"]
 
 [tool.ruff.format]
 quote-style = "double"
