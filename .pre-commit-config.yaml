@@ -1,0 +1,31 @@
+repos:
+  - repo: local
+    hooks:
+      - id: ruff
+        name: ruff
+        entry: poetry run ruff check .
+        language: system
+        types: [python]
+        stages: [pre-commit]
+
+      - id: mypy
+        name: mypy
+        entry: poetry run mypy .
+        language: system
+        types: [python]
+        stages: [pre-push]
+
+      - id: bandit
+        name: bandit
+        entry: poetry run bandit -r .
+        language: system
+        types: [python]
+        stages: [pre-push]
+
+      - id: pytest
+        name: pytest
+        entry: poetry run pytest
+        language: system
+        pass_filenames: false
+        types: [python]
+        stages: [pre-push]

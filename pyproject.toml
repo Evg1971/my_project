@@ -20,7 +20,10 @@ build-backend = "poetry.core.masonry.api"
 
 [dependency-groups]
 dev = [
-    "ruff (>=0.15.11,<0.16.0)"
+    "ruff (>=0.15.11,<0.16.0)",
+    "mypy (>=2.1.0,<3.0.0)",
+    "bandit (>=1.9.4,<2.0.0)",
+    "pre-commit (>=4.6.0,<5.0.0)"
 ]
 
 [tool.ruff]
@@ -47,3 +50,12 @@ line-ending = "lf"
 
 [tool.ruff.lint.mccabe]
 max-complexity = 10
+
+[tool.mypy]
+check_untyped_defs = true
+disallow_untyped_defs = true
+ignore_missing_imports = true
+
+[tool.bandit]
+exclude_dirs = ["tests"]
+skips = ["B101"]
