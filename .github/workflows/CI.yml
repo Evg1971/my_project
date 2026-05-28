@@ -2,16 +2,9 @@ name: CI
 
 on:
   push:
-    branches:
-      - main
-      - ci-workflow
-
-  pull_request:
-    branches:
-      - main
 
 jobs:
-  test:
+  ruff-check:
     runs-on: ubuntu-latest
 
     steps:
@@ -29,5 +22,18 @@ jobs:
       - name: Install dependencies
         run: poetry install
 
-      - name: Run tests
-        run: poetry run pytest
+      - name: Run Ruff
+        run: poetry run ruff check .
+
+  docker-pytest:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t my-project .
+
+      - name: Run tests in Docker
+        run: docker run my-project poetry run pytest
