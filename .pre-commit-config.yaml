@@ -12,8 +12,9 @@ repos:
         name: mypy
         entry: poetry run mypy .
         language: system
-        types: [python]
-        stages: [pre-push]
+        pass_filenames: false
+        types: [ python ]
+        stages: [ pre-push ]
 
       - id: bandit
         name: bandit
