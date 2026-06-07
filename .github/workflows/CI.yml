@@ -8,32 +8,32 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
 
       - name: Install Poetry
-        run: pip install poetry
+        run: |
+          python -m pip install --upgrade pip
+          pip install poetry
 
       - name: Install dependencies
-        run: poetry install
+        run: poetry install --with dev
 
       - name: Run Ruff
         run: poetry run ruff check .
 
   docker-pytest:
+    needs: ruff-check
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Build Docker image
         run: docker build -t my-project .
 
       - name: Run tests in Docker
-        run: docker run my-project poetry run pytest
+        run: docker run --rm my-project poetry run pytest
