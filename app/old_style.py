@@ -1,9 +1,3 @@
-import os
-import sys
-from datetime import datetime, timedelta
-from math import pi, sqrt
-
-
 def sum_numbers(a, b):
     second_number = int(
         input(
