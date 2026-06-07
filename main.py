@@ -1,12 +1,14 @@
 import requests
 
 
-def get_weather(city):
+def get_weather(city: str) -> str:
     if not city.strip():
         return "Ошибка: название города не может быть пустым."
+
     url = f"https://wttr.in/{city}?format=j1"
+
     try:
-        response = requests.get(url)
+        response = requests.get(url, timeout=10)
         response.raise_for_status()
         return response.text
     except requests.exceptions.RequestException as e:

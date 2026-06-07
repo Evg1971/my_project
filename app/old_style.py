@@ -1,4 +1,4 @@
-def sum_numbers(a, b):
+def sum_numbers(a: int, b: int) -> int:
     second_number = int(
         input(
             "В это поле необходимо ввести второе число, "
